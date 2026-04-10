@@ -21,7 +21,7 @@ if (!defined('ABSPATH')) {
         </div>
     </div>
     
-    <div class="fim-admin-card fim-animate-slideUp">
+    <div class="fim-admin-card">
         <div class="fim-admin-card-header">
             <h2><?php _e('Products List', 'fruit-inventory-manager'); ?></h2>
         </div>
@@ -38,7 +38,7 @@ if (!defined('ABSPATH')) {
                             <th width="150"><?php _e('Actions', 'fruit-inventory-manager'); ?></th>
                         </tr>
                     </thead>
-                    <tbody class="fim-staggered-list">
+                    <tbody >
                         <?php if (!empty($products)) : ?>
                             <?php foreach ($products as $index => $product) : ?>
                                 <tr data-product-id="<?php echo esc_attr($product['id']); ?>">

@@ -505,7 +505,7 @@
             
             // Add records
             $.each(records, function(index, record) {
-                var $row = $('<tr class="fim-slide-in-bottom"></tr>');
+                var $row = $('<tr ></tr>');
                 
                 $row.attr('data-inventory-id', record.id);
                 
@@ -700,14 +700,6 @@
             
             // Set the closing value
             this.$inventoryForm.find('.fim-closing').val(closing.toFixed(2));
-            
-            // Add animation to indicate change
-            this.$inventoryForm.find('.fim-closing')
-                .addClass('fim-highlight')
-                .delay(800)
-                .queue(function() {
-                    $(this).removeClass('fim-highlight').dequeue();
-                });
         },
         
         /**
@@ -948,7 +940,7 @@
             
             // Add logs
             $.each(logs, function(index, log) {
-                var $row = $('<tr class="fim-slide-in-bottom"></tr>');
+                var $row = $('<tr ></tr>');
                 
                 $row.append('<td>' + log.id + '</td>');
                 $row.append('<td>' + log.user_name + '</td>');

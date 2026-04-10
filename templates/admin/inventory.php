@@ -21,7 +21,7 @@ if (!defined('ABSPATH')) {
         </div>
     </div>
     
-    <div class="fim-admin-card fim-animate-slideUp">
+    <div class="fim-admin-card">
         <div class="fim-admin-card-header">
             <h2><?php _e('Filters', 'fruit-inventory-manager'); ?></h2>
         </div>
@@ -61,7 +61,7 @@ if (!defined('ABSPATH')) {
         </div>
     </div>
     
-    <div class="fim-admin-card fim-animate-slideUp" style="animation-delay: 0.2s;">
+    <div class="fim-admin-card">
         <div class="fim-admin-card-header">
             <h2><?php _e('Inventory Records', 'fruit-inventory-manager'); ?></h2>
         </div>

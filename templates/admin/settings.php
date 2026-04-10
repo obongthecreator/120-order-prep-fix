@@ -18,7 +18,7 @@ if (!defined('ABSPATH')) {
     
     <?php settings_errors('fim_settings'); ?>
     
-    <div class="fim-admin-card fim-animate-slideUp">
+    <div class="fim-admin-card">
         <div class="fim-admin-card-header">
             <h2><?php _e('General Settings', 'fruit-inventory-manager'); ?></h2>
         </div>
@@ -81,7 +81,7 @@ if (!defined('ABSPATH')) {
         </div>
     </div>
     
-    <div class="fim-admin-card fim-animate-slideUp" style="animation-delay: 0.2s;">
+    <div class="fim-admin-card">
         <div class="fim-admin-card-header">
             <h2><?php _e('Shortcodes', 'fruit-inventory-manager'); ?></h2>
         </div>
@@ -116,7 +116,7 @@ if (!defined('ABSPATH')) {
         </div>
     </div>
     
-    <div class="fim-admin-card fim-animate-slideUp" style="animation-delay: 0.4s;">
+    <div class="fim-admin-card">
         <div class="fim-admin-card-header">
             <h2><?php _e('About', 'fruit-inventory-manager'); ?></h2>
         </div>

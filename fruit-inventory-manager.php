@@ -94,9 +94,12 @@ class Fruit_Inventory_Manager {
  * Enqueue frontend assets
  */
 public function enqueue_frontend_assets() {
+    // Tailwind CSS CDN
+    wp_enqueue_script('fim-tailwind-cdn', 'https://cdn.tailwindcss.com', array(), null, false);
+    wp_add_inline_script('fim-tailwind-cdn', "tailwind.config = { prefix: 'tw-', corePlugins: { preflight: false } };");
+    
     // Styles
     wp_enqueue_style('fim-frontend-css', FIM_PLUGIN_URL . 'assets/css/frontend.css', array(), FIM_PLUGIN_VERSION);
-    wp_enqueue_style('fim-animations-css', FIM_PLUGIN_URL . 'assets/css/animations.css', array(), FIM_PLUGIN_VERSION);
     
     // Scripts
     wp_enqueue_script('fim-frontend-js', FIM_PLUGIN_URL . 'assets/js/frontend.js', array('jquery'), FIM_PLUGIN_VERSION, true);
@@ -136,7 +139,6 @@ public function enqueue_frontend_assets() {
         
         // Styles
         wp_enqueue_style('fim-admin-css', FIM_PLUGIN_URL . 'assets/css/admin.css', array(), FIM_PLUGIN_VERSION);
-        wp_enqueue_style('fim-animations-css', FIM_PLUGIN_URL . 'assets/css/animations.css', array(), FIM_PLUGIN_VERSION);
         
         // Scripts
         wp_enqueue_script('fim-admin-js', FIM_PLUGIN_URL . 'assets/js/admin.js', array('jquery'), FIM_PLUGIN_VERSION, true);

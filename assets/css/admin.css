@@ -77,7 +77,6 @@
 
 .fim-admin-tab-content.active {
     display: block;
-    animation: fim-fadeIn 0.5s ease forwards;
 }
 
 /* Cards */
@@ -87,12 +86,6 @@
     box-shadow: var(--fim-shadow);
     margin-bottom: 20px;
     overflow: hidden;
-    transition: var(--fim-transition);
-}
-
-.fim-admin-card:hover {
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
-    transform: translateY(-2px);
 }
 
 .fim-admin-card-header {
@@ -236,7 +229,7 @@
 .fim-admin-btn-primary:hover {
     background-color: var(--fim-primary-hover);
     border-color: var(--fim-primary-hover);
-    transform: translateY(-2px);
+
 }
 
 .fim-admin-btn-secondary {
@@ -248,7 +241,7 @@
 .fim-admin-btn-secondary:hover {
     background-color: #212529;
     border-color: #16181b;
-    transform: translateY(-2px);
+
 }
 
 .fim-admin-btn-success {
@@ -260,7 +253,7 @@
 .fim-admin-btn-success:hover {
     background-color: #218838;
     border-color: #1e7e34;
-    transform: translateY(-2px);
+
 }
 
 .fim-admin-btn-danger {
@@ -272,7 +265,7 @@
 .fim-admin-btn-danger:hover {
     background-color: #c82333;
     border-color: #bd2130;
-    transform: translateY(-2px);
+
 }
 
 .fim-admin-btn-sm {
@@ -400,12 +393,6 @@
     border-radius: 6px;
     box-shadow: var(--fim-shadow);
     overflow: hidden;
-    transition: var(--fim-transition);
-}
-
-.fim-admin-widget:hover {
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
-    transform: translateY(-2px);
 }
 
 .fim-admin-widget-header {
@@ -778,11 +765,6 @@
     font-weight: 500;
 }
 
-/* Highlight animation */
-.fim-highlight {
-    animation: fim-highlight 0.8s ease;
-}
-
 /* Form actions */
 .fim-form-actions {
     text-align: right;
@@ -850,14 +832,4 @@
     }
 }
 
-@keyframes fim-highlight {
-    0% {
-        background-color: transparent;
-    }
-    30% {
-        background-color: rgba(255, 0, 0, 0.2);
-    }
-    100% {
-        background-color: transparent;
-    }
-}
+/* End of admin styles */

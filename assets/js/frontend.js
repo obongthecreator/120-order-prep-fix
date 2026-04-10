@@ -199,12 +199,7 @@
                                         $row.find('.fim-total-sold').val(parseFloat(record.total_sold).toFixed(2));
                                         $closingField.val(parseFloat(record.closing).toFixed(2));
                                         
-                                        // Highlight all fields to show they were loaded with no delay
-                                        $row.find('input').addClass('fim-highlight')
-                                            .delay(0)
-                                            .queue(function() {
-                                                $(this).removeClass('fim-highlight').dequeue();
-                                            });
+                                        // Values loaded for this row
                                     } else {
                                         // No saved record found, use opening value from previous day
                                         // and for admins, set closing to match opening initially
@@ -236,13 +231,6 @@
                         if (processedProducts === totalProducts) {
                             // All products are loaded
                             FIM.showToast('success', 'Ready', 'Values loaded successfully');
-                            
-                            // Highlight all opening fields with no delay
-                            FIM.$productsTable.find('.fim-opening').addClass('fim-highlight')
-                                .delay(0)
-                                .queue(function() {
-                                    $(this).removeClass('fim-highlight').dequeue();
-                                });
                         }
                     },
                     error: function() {
@@ -268,14 +256,6 @@
             
             // Set the closing value
             $row.find('.fim-closing').val(closing.toFixed(2));
-            
-            // Add animation to indicate change with no delay
-            $row.find('.fim-closing')
-                .addClass('fim-highlight')
-                .delay(0)
-                .queue(function() {
-                    $(this).removeClass('fim-highlight').dequeue();
-                });
         },
         
         /**
@@ -401,16 +381,6 @@
                             });
                         }
                         
-                        // Highlight which products were updated with no delay
-                        $.each(productsWithData, function(index, product) {
-                            var $row = FIM.$productsTable.find('tr[data-product-id="' + product.id + '"]');
-                            $row.addClass('fim-row-updated')
-                                .delay(0)
-                                .queue(function() {
-                                    $(this).removeClass('fim-row-updated').dequeue();
-                                });
-                        });
-                        
                         // Check if we need to update the date
                         var today = new Date();
                         var formDate = new Date(FIM.$dateField.val());
@@ -463,14 +433,6 @@
                     
                     // Add to the list of updated products
                     updatedProducts.push(productId);
-                    
-                    // Highlight the closing field with no delay
-                    $row.find('.fim-closing')
-                        .addClass('fim-highlight')
-                        .delay(0)
-                        .queue(function() {
-                            $(this).removeClass('fim-highlight').dequeue();
-                        });
                 }
             });
             
@@ -496,14 +458,6 @@
                 
                 // Update the closing field
                 $row.find('.fim-closing').val(closing.toFixed(2));
-                
-                // Highlight the closing field to indicate it was updated with no delay
-                $row.find('.fim-closing')
-                    .addClass('fim-highlight')
-                    .delay(0)
-                    .queue(function() {
-                        $(this).removeClass('fim-highlight').dequeue();
-                    });
             });
         },
         
@@ -587,22 +541,19 @@
             
             // Add records
             $.each(records, function(index, record) {
-                var $row = $('<tr class="fim-slide-in-bottom"></tr>');
+                var $row = $('<tr class="hover:tw-bg-red-50 tw-border-b tw-border-gray-200"></tr>');
                 
-                $row.append('<td>' + record.id + '</td>');
-                $row.append('<td>' + record.product_name + '</td>');
-                $row.append('<td>' + record.staff_name + '</td>');
-                $row.append('<td>' + record.date + '</td>');
-                $row.append('<td>' + record.opening + '</td>');
-                $row.append('<td>' + record.total_added + '</td>');
-                $row.append('<td>' + record.total_sold + '</td>');
-                $row.append('<td>' + record.closing + '</td>');
-                $row.append('<td>' + (record.remarks || '-') + '</td>');
+                $row.append('<td class="tw-py-3 tw-px-4">' + record.id + '</td>');
+                $row.append('<td class="tw-py-3 tw-px-4">' + record.product_name + '</td>');
+                $row.append('<td class="tw-py-3 tw-px-4">' + record.staff_name + '</td>');
+                $row.append('<td class="tw-py-3 tw-px-4">' + record.date + '</td>');
+                $row.append('<td class="tw-py-3 tw-px-4">' + record.opening + '</td>');
+                $row.append('<td class="tw-py-3 tw-px-4">' + record.total_added + '</td>');
+                $row.append('<td class="tw-py-3 tw-px-4">' + record.total_sold + '</td>');
+                $row.append('<td class="tw-py-3 tw-px-4">' + record.closing + '</td>');
+                $row.append('<td class="tw-py-3 tw-px-4">' + (record.remarks || '-') + '</td>');
                 
                 FIM.$recordsTableBody.append($row);
-                
-                // No animation delay
-                $row.css('animation-delay', '0s');
             });
         },
         

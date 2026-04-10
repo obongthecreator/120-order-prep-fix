@@ -25,7 +25,7 @@ if (!defined('ABSPATH')) {
     </div>
     
     <div class="fim-admin-widgets">
-        <div class="fim-admin-widget fim-animate-fadeIn">
+        <div class="fim-admin-widget">
             <div class="fim-admin-widget-header">
                 <h3 class="fim-admin-widget-title"><?php _e('Total Products', 'fruit-inventory-manager'); ?></h3>
             </div>
@@ -35,7 +35,7 @@ if (!defined('ABSPATH')) {
             </div>
         </div>
         
-        <div class="fim-admin-widget fim-animate-fadeIn" style="animation-delay: 0.1s;">
+        <div class="fim-admin-widget">
             <div class="fim-admin-widget-header">
                 <h3 class="fim-admin-widget-title"><?php _e('Today\'s Entries', 'fruit-inventory-manager'); ?></h3>
             </div>
@@ -45,7 +45,7 @@ if (!defined('ABSPATH')) {
             </div>
         </div>
         
-        <div class="fim-admin-widget fim-animate-fadeIn" style="animation-delay: 0.2s;">
+        <div class="fim-admin-widget">
             <div class="fim-admin-widget-header">
                 <h3 class="fim-admin-widget-title"><?php _e('Yesterday\'s Entries', 'fruit-inventory-manager'); ?></h3>
             </div>
@@ -55,7 +55,7 @@ if (!defined('ABSPATH')) {
             </div>
         </div>
         
-        <div class="fim-admin-widget fim-animate-fadeIn" style="animation-delay: 0.3s;">
+        <div class="fim-admin-widget">
             <div class="fim-admin-widget-header">
                 <h3 class="fim-admin-widget-title"><?php _e('Monthly Entries', 'fruit-inventory-manager'); ?></h3>
             </div>
@@ -66,7 +66,7 @@ if (!defined('ABSPATH')) {
         </div>
     </div>
     
-    <div class="fim-admin-card fim-animate-slideUp">
+    <div class="fim-admin-card">
         <div class="fim-admin-card-header">
             <h2><?php _e('Recent Inventory Entries', 'fruit-inventory-manager'); ?></h2>
             <a href="<?php echo esc_url(admin_url('admin.php?page=fim-inventory')); ?>" class="fim-admin-btn fim-admin-btn-sm fim-admin-btn-secondary">
@@ -89,7 +89,7 @@ if (!defined('ABSPATH')) {
                             <th><?php _e('Actions', 'fruit-inventory-manager'); ?></th>
                         </tr>
                     </thead>
-                    <tbody class="fim-staggered-list">
+                    <tbody >
                         <?php if (!empty($recent_entries)) : ?>
                             <?php foreach ($recent_entries as $entry) : ?>
                                 <tr data-inventory-id="<?php echo esc_attr($entry['id']); ?>">
@@ -122,7 +122,7 @@ if (!defined('ABSPATH')) {
         </div>
     </div>
     
-    <div class="fim-admin-card fim-animate-slideUp" style="animation-delay: 0.2s;">
+    <div class="fim-admin-card">
         <div class="fim-admin-card-header">
             <h2><?php _e('Recent Activity Logs', 'fruit-inventory-manager'); ?></h2>
             <a href="<?php echo esc_url(admin_url('admin.php?page=fim-logs')); ?>" class="fim-admin-btn fim-admin-btn-sm fim-admin-btn-secondary">
@@ -143,7 +143,7 @@ if (!defined('ABSPATH')) {
                             <th><?php _e('Date & Time', 'fruit-inventory-manager'); ?></th>
                         </tr>
                     </thead>
-                    <tbody class="fim-staggered-list">
+                    <tbody >
                         <?php if (!empty($recent_logs)) : ?>
                             <?php foreach ($recent_logs as $log) : ?>
                                 <?php
@@ -174,7 +174,7 @@ if (!defined('ABSPATH')) {
         </div>
     </div>
     
-    <div class="fim-admin-card fim-animate-slideUp" style="animation-delay: 0.4s;">
+    <div class="fim-admin-card">
         <div class="fim-admin-card-header">
             <h2><?php _e('Quick Links', 'fruit-inventory-manager'); ?></h2>
         </div>
