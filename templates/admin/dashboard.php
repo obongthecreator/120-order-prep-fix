@@ -89,7 +89,7 @@ if (!defined('ABSPATH')) {
                             <th><?php _e('Actions', 'fruit-inventory-manager'); ?></th>
                         </tr>
                     </thead>
-                    <tbody >
+                    <tbody>
                         <?php if (!empty($recent_entries)) : ?>
                             <?php foreach ($recent_entries as $entry) : ?>
                                 <tr data-inventory-id="<?php echo esc_attr($entry['id']); ?>">
@@ -143,7 +143,7 @@ if (!defined('ABSPATH')) {
                             <th><?php _e('Date & Time', 'fruit-inventory-manager'); ?></th>
                         </tr>
                     </thead>
-                    <tbody >
+                    <tbody>
                         <?php if (!empty($recent_logs)) : ?>
                             <?php foreach ($recent_logs as $log) : ?>
                                 <?php

@@ -505,7 +505,7 @@
             
             // Add records
             $.each(records, function(index, record) {
-                var $row = $('<tr ></tr>');
+                var $row = $('<tr></tr>');
                 
                 $row.attr('data-inventory-id', record.id);
                 
@@ -940,7 +940,7 @@
             
             // Add logs
             $.each(logs, function(index, log) {
-                var $row = $('<tr ></tr>');
+                var $row = $('<tr></tr>');
                 
                 $row.append('<td>' + log.id + '</td>');
                 $row.append('<td>' + log.user_name + '</td>');

@@ -139,7 +139,7 @@ if (!defined('ABSPATH')) {
                     <li><?php _e('Previous day\'s closing becomes next day\'s opening', 'fruit-inventory-manager'); ?></li>
                     <li><?php _e('Frontend records page with filters and pagination', 'fruit-inventory-manager'); ?></li>
                     <li><?php _e('Admin dashboard with comprehensive management options', 'fruit-inventory-manager'); ?></li>
-                    <li><?php _e('Sleek animations and user-friendly interface', 'fruit-inventory-manager'); ?></li>
+                    <li><?php _e('Clean and user-friendly interface', 'fruit-inventory-manager'); ?></li>
                     <li><?php _e('Detailed activity logging for security and tracking', 'fruit-inventory-manager'); ?></li>
                 </ul>
                 

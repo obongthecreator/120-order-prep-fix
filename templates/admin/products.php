@@ -38,7 +38,7 @@ if (!defined('ABSPATH')) {
                             <th width="150"><?php _e('Actions', 'fruit-inventory-manager'); ?></th>
                         </tr>
                     </thead>
-                    <tbody >
+                    <tbody>
                         <?php if (!empty($products)) : ?>
                             <?php foreach ($products as $index => $product) : ?>
                                 <tr data-product-id="<?php echo esc_attr($product['id']); ?>">
