@@ -20,7 +20,7 @@ $is_admin = current_user_can('manage_options');
         <p class="tw-text-base tw-text-gray-500"><?php _e('Track your fruit products inventory with ease', 'fruit-inventory-manager'); ?></p>
     </div>
     
-    <form id="fim-inventory-form" class="fim-form">
+    <form id="fim-inventory-form" class="fim-form" method="post" action="">
         <div class="tw-bg-white tw-rounded-lg tw-shadow-md tw-mb-8 tw-overflow-hidden">
             <div class="tw-bg-red-600 tw-text-white tw-px-5 tw-py-4 tw-flex tw-justify-between tw-items-center">
                 <h3 class="tw-m-0 tw-text-lg tw-font-medium"><?php _e('Preparation Details', 'fruit-inventory-manager'); ?></h3>

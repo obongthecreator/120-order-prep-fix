@@ -273,10 +273,11 @@
          */
         handleFormSubmit: function(e) {
             e.preventDefault();
+            e.stopPropagation();
             
             // Validate form
             if (!this.validateForm()) {
-                return;
+                return false;
             }
             
             // Check if current user is admin
@@ -358,6 +359,9 @@
                     FIM.$submitButton.removeClass('fim-btn-loading').prop('disabled', false);
                     
                     if (response.success) {
+                        // Show success message
+                        FIM.showToast('success', 'Success', response.data.message);
+                        
                         // Process the server response to update the form
                         if (response.data && response.data.updated_records) {
                             // Update form with server-calculated values
@@ -366,9 +370,6 @@
                             // Fallback if server doesn't return calculated values
                             FIM.updateFormWithCalculatedValues();
                         }
-                        
-                        // Show success message
-                        FIM.showToast('success', 'Success', response.data.message);
                         
                         // For admin, don't clear inputs since they might be setting baseline values
                         if (!isAdmin) {
@@ -380,6 +381,10 @@
                                 $row.find('.fim-total-added, .fim-total-sold').val('');
                             });
                         }
+                        
+                        // Refresh the form data with latest values from the server
+                        // This simulates a "page refresh" without actually navigating away
+                        FIM.getOpeningValues();
                         
                         // Check if we need to update the date
                         var today = new Date();
@@ -403,6 +408,9 @@
                     FIM.showToast('error', 'Error', 'Failed to submit form');
                 }
             });
+            
+            // Extra safety: always prevent native form submission
+            return false;
         },
         
         /**

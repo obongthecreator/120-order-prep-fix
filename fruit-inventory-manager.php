@@ -94,9 +94,10 @@ class Fruit_Inventory_Manager {
  * Enqueue frontend assets
  */
 public function enqueue_frontend_assets() {
-    // Tailwind CSS CDN
+    // Tailwind CSS CDN — config MUST load before the CDN script so the prefix
+    // is known when Tailwind initializes and preflight is properly disabled.
     wp_enqueue_script('fim-tailwind-cdn', 'https://cdn.tailwindcss.com', array(), null, false);
-    wp_add_inline_script('fim-tailwind-cdn', "tailwind.config = { prefix: 'tw-', corePlugins: { preflight: false } };");
+    wp_add_inline_script('fim-tailwind-cdn', "tailwind.config = { prefix: 'tw-', corePlugins: { preflight: false } };", 'before');
     
     // Styles
     wp_enqueue_style('fim-frontend-css', FIM_PLUGIN_URL . 'assets/css/frontend.css', array(), FIM_PLUGIN_VERSION);

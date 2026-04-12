@@ -61,8 +61,9 @@ class FIM_Frontend {
         // Buffer output
         ob_start();
         
-        // Include form template
-        include_once FIM_PLUGIN_DIR . 'templates/inventory-form.php';
+        // Include form template (use include, not include_once, so the
+        // shortcode can be rendered more than once on the same page)
+        include FIM_PLUGIN_DIR . 'templates/inventory-form.php';
         
         return ob_get_clean();
     }
@@ -86,8 +87,9 @@ class FIM_Frontend {
         // Buffer output
         ob_start();
         
-        // Include records template
-        include_once FIM_PLUGIN_DIR . 'templates/inventory-records.php';
+        // Include records template (use include, not include_once, so the
+        // shortcode can be rendered more than once on the same page)
+        include FIM_PLUGIN_DIR . 'templates/inventory-records.php';
         
         return ob_get_clean();
     }
