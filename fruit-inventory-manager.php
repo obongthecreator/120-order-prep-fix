@@ -96,8 +96,9 @@ class Fruit_Inventory_Manager {
 public function enqueue_frontend_assets() {
     // Tailwind CSS CDN — config MUST load before the CDN script so the prefix
     // is known when Tailwind initializes and preflight is properly disabled.
+    // Brand color #FF0000 is registered as a custom color so tw-bg-brand / tw-text-brand work.
     wp_enqueue_script('fim-tailwind-cdn', 'https://cdn.tailwindcss.com', array(), null, false);
-    wp_add_inline_script('fim-tailwind-cdn', "tailwind.config = { prefix: 'tw-', corePlugins: { preflight: false } };", 'before');
+    wp_add_inline_script('fim-tailwind-cdn', "tailwind.config = { prefix: 'tw-', corePlugins: { preflight: false }, theme: { extend: { colors: { brand: '#FF0000' } } } };", 'before');
     
     // Styles
     wp_enqueue_style('fim-frontend-css', FIM_PLUGIN_URL . 'assets/css/frontend.css', array(), FIM_PLUGIN_VERSION);

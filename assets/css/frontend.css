@@ -1,16 +1,42 @@
 /**
  * Frontend Styles for Fruit Inventory Manager
- * Minimal CSS - layout handled by Tailwind CSS utility classes
- * Only functional styles retained (spinner, toast, loading states, btn-loading)
+ * Brand colors: #FF0000 (red) and #FFFFFF (white)
+ *
+ * These CSS rules serve as the DEFINITIVE styling layer. Tailwind utility
+ * classes in the templates are kept for convenience, but this stylesheet
+ * guarantees the correct brand appearance even if the Tailwind CDN fails
+ * to load or the tw- prefix is not recognized.
  */
 
-/* Spinner keyframe - used by loading spinner and btn-loading */
+/* ------------------------------------------------------------------ */
+/* CSS Custom Properties (brand tokens)                                */
+/* ------------------------------------------------------------------ */
+:root {
+    --fim-brand: #FF0000;
+    --fim-brand-hover: #CC0000;
+    --fim-brand-light: rgba(255, 0, 0, 0.05);
+    --fim-brand-ring: rgba(255, 0, 0, 0.25);
+    --fim-white: #FFFFFF;
+    --fim-gray-50: #f9fafb;
+    --fim-gray-100: #f3f4f6;
+    --fim-gray-200: #e5e7eb;
+    --fim-gray-300: #d1d5db;
+    --fim-gray-500: #6b7280;
+    --fim-gray-800: #1f2937;
+    --fim-gray-900: #111827;
+    --fim-radius: 8px;
+    --fim-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+    --fim-shadow-md: 0 4px 6px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.06);
+}
+
+/* ------------------------------------------------------------------ */
+/* Spinner keyframes                                                   */
+/* ------------------------------------------------------------------ */
 @keyframes fim-spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
 
-/* Toast slide-in / slide-out */
 @keyframes fim-slideInRight {
     from { transform: translateX(100%); opacity: 0; }
     to   { transform: translateX(0);    opacity: 1; }
@@ -21,7 +47,284 @@
     to   { transform: translateX(100%); opacity: 0; }
 }
 
-/* Toast container */
+/* ------------------------------------------------------------------ */
+/* Page container                                                      */
+/* ------------------------------------------------------------------ */
+.fim-container {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+/* Page header */
+.fim-page-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.fim-page-header h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--fim-gray-800);
+    margin: 0 0 8px 0;
+}
+
+.fim-page-header p {
+    font-size: 1rem;
+    color: var(--fim-gray-500);
+    margin: 0;
+}
+
+/* ------------------------------------------------------------------ */
+/* Cards (sections with colored header)                                */
+/* ------------------------------------------------------------------ */
+.fim-card {
+    background: var(--fim-white);
+    border-radius: var(--fim-radius);
+    box-shadow: var(--fim-shadow-md);
+    margin-bottom: 32px;
+    overflow: hidden;
+}
+
+.fim-card-header {
+    background-color: var(--fim-brand);
+    color: var(--fim-white);
+    padding: 14px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.fim-card-header h3 {
+    margin: 0;
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: var(--fim-white);
+}
+
+.fim-card-body {
+    padding: 20px;
+}
+
+/* ------------------------------------------------------------------ */
+/* Form elements                                                       */
+/* ------------------------------------------------------------------ */
+.fim-form-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -10px;
+    margin-right: -10px;
+}
+
+.fim-form-group {
+    flex: 1 1 200px;
+    min-width: 200px;
+    padding: 0 10px;
+    margin-bottom: 20px;
+}
+
+.fim-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--fim-gray-800);
+    font-size: 0.875rem;
+}
+
+.fim-form-control {
+    width: 100%;
+    padding: 10px 16px;
+    font-size: 1rem;
+    border: 1px solid var(--fim-gray-300);
+    border-radius: 4px;
+    background-color: var(--fim-white);
+    color: var(--fim-gray-800);
+    box-sizing: border-box;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.fim-form-control:focus {
+    border-color: var(--fim-brand);
+    outline: none;
+    box-shadow: 0 0 0 3px var(--fim-brand-ring);
+}
+
+.fim-form-control[readonly] {
+    background-color: var(--fim-gray-50);
+    opacity: 0.7;
+}
+
+.fim-textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* ------------------------------------------------------------------ */
+/* Buttons                                                             */
+/* ------------------------------------------------------------------ */
+.fim-btn {
+    display: inline-block;
+    font-weight: 500;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid transparent;
+    padding: 12px 24px;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.fim-btn-primary {
+    background-color: var(--fim-brand);
+    border-color: var(--fim-brand);
+    color: var(--fim-white);
+}
+
+.fim-btn-primary:hover,
+.fim-btn-primary:focus {
+    background-color: var(--fim-brand-hover);
+    border-color: var(--fim-brand-hover);
+    color: var(--fim-white);
+}
+
+.fim-btn-primary:focus {
+    box-shadow: 0 0 0 3px var(--fim-brand-ring);
+    outline: none;
+}
+
+.fim-btn-secondary {
+    background-color: var(--fim-gray-800);
+    border-color: var(--fim-gray-800);
+    color: var(--fim-white);
+}
+
+.fim-btn-secondary:hover,
+.fim-btn-secondary:focus {
+    background-color: var(--fim-gray-900);
+    border-color: var(--fim-gray-900);
+    color: var(--fim-white);
+}
+
+.fim-btn-secondary:focus {
+    box-shadow: 0 0 0 3px rgba(31, 41, 55, 0.25);
+    outline: none;
+}
+
+/* Large submit button */
+#fim-submit-button {
+    font-size: 1.125rem;
+    padding: 14px 28px;
+}
+
+/* Button loading state */
+.fim-btn-loading {
+    position: relative;
+    pointer-events: none;
+    opacity: 0.85;
+}
+
+.fim-btn-loading:after {
+    content: '';
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    border: 2px solid var(--fim-white);
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: fim-spin 1s linear infinite;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+/* ------------------------------------------------------------------ */
+/* Table                                                               */
+/* ------------------------------------------------------------------ */
+.fim-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.fim-th {
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    color: var(--fim-white);
+    background-color: var(--fim-brand);
+    white-space: nowrap;
+    border-bottom: 2px solid var(--fim-brand-hover);
+    font-size: 0.875rem;
+    letter-spacing: 0.02em;
+}
+
+.fim-table tbody td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--fim-gray-200);
+    vertical-align: middle;
+}
+
+.fim-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.fim-product-row:hover {
+    background-color: var(--fim-brand-light);
+}
+
+/* Table inputs */
+.fim-input {
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 0.875rem;
+    border: 1px solid var(--fim-gray-300);
+    border-radius: 4px;
+    background-color: var(--fim-white);
+    color: var(--fim-gray-800);
+    box-sizing: border-box;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.fim-input:focus {
+    border-color: var(--fim-brand);
+    outline: none;
+    box-shadow: 0 0 0 3px var(--fim-brand-ring);
+}
+
+.fim-input[readonly] {
+    background-color: var(--fim-gray-50);
+    cursor: not-allowed;
+}
+
+.fim-opening {
+    font-weight: 600;
+    color: var(--fim-gray-800);
+}
+
+.fim-closing {
+    font-weight: 600;
+    color: var(--fim-brand);
+}
+
+/* Admin editable field styles */
+.admin-editable {
+    background-color: #fffde7 !important;
+    border: 1px solid #ffd54f !important;
+}
+
+.admin-editable:focus {
+    background-color: #fff8e1 !important;
+    border-color: #ffb300 !important;
+    box-shadow: 0 0 0 2px rgba(255, 179, 0, 0.25) !important;
+}
+
+/* ------------------------------------------------------------------ */
+/* Toast notifications                                                 */
+/* ------------------------------------------------------------------ */
 #fim-toast-container {
     position: fixed;
     top: 20px;
@@ -29,10 +332,9 @@
     z-index: 9999;
 }
 
-/* Toast notification */
 .fim-toast {
     display: flex;
-    background-color: white;
+    background-color: var(--fim-white);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     border-radius: 4px;
     margin-bottom: 10px;
@@ -85,55 +387,23 @@
     animation: fim-slideOutRight 0.3s ease forwards;
 }
 
-/* Loader spinner */
+/* ------------------------------------------------------------------ */
+/* Loader spinner                                                      */
+/* ------------------------------------------------------------------ */
 .fim-loader {
     display: inline-block;
     width: 30px;
     height: 30px;
     border: 3px solid rgba(255, 0, 0, 0.3);
     border-radius: 50%;
-    border-top-color: #FF0000;
+    border-top-color: var(--fim-brand);
     animation: fim-spin 1s linear infinite;
     margin: 0 auto;
 }
 
-/* Button loading state */
-.fim-btn-loading {
-    position: relative;
-    pointer-events: none;
-}
-
-.fim-btn-loading:after {
-    content: '';
-    display: inline-block;
-    width: 1em;
-    height: 1em;
-    border: 2px solid #fff;
-    border-radius: 50%;
-    border-top-color: transparent;
-    animation: fim-spin 1s linear infinite;
-    margin-left: 10px;
-    vertical-align: middle;
-}
-
-/* Table readonly fields */
-.fim-table input[readonly] {
-    cursor: not-allowed;
-}
-
-/* Admin editable field styles */
-.admin-editable {
-    background-color: #fffde7 !important;
-    border: 1px solid #ffd54f !important;
-}
-
-.admin-editable:focus {
-    background-color: #fff8e1 !important;
-    border-color: #ffb300 !important;
-    box-shadow: 0 0 0 2px rgba(255, 179, 0, 0.25) !important;
-}
-
-/* Pagination */
+/* ------------------------------------------------------------------ */
+/* Pagination                                                          */
+/* ------------------------------------------------------------------ */
 .fim-pagination {
     display: flex;
     padding-left: 0;
@@ -153,8 +423,8 @@
     padding: 8px 12px;
     margin-left: -1px;
     line-height: 1.25;
-    color: #FF0000;
-    background-color: #fff;
+    color: var(--fim-brand);
+    background-color: var(--fim-white);
     border: 1px solid #dee2e6;
     text-decoration: none;
     transition: all 0.2s ease;
@@ -162,28 +432,30 @@
 
 .fim-page-link:hover {
     z-index: 2;
-    color: #fff;
+    color: var(--fim-white);
     text-decoration: none;
-    background-color: #FF0000;
-    border-color: #FF0000;
+    background-color: var(--fim-brand);
+    border-color: var(--fim-brand);
 }
 
 .fim-page-item.active .fim-page-link {
     z-index: 1;
-    color: #fff;
-    background-color: #FF0000;
-    border-color: #FF0000;
+    color: var(--fim-white);
+    background-color: var(--fim-brand);
+    border-color: var(--fim-brand);
 }
 
 .fim-page-item.disabled .fim-page-link {
     color: #6c757d;
     pointer-events: none;
     cursor: auto;
-    background-color: #fff;
+    background-color: var(--fim-white);
     border-color: #dee2e6;
 }
 
-/* Alert styles */
+/* ------------------------------------------------------------------ */
+/* Alerts                                                              */
+/* ------------------------------------------------------------------ */
 .fim-alert {
     position: relative;
     padding: 12px 20px;
@@ -216,7 +488,9 @@
     border-color: #bee5eb;
 }
 
-/* Form feedback message */
+/* ------------------------------------------------------------------ */
+/* Form feedback message                                               */
+/* ------------------------------------------------------------------ */
 .fim-form-message {
     padding: 10px 15px;
     margin: 15px 0;
@@ -240,13 +514,46 @@
     display: block;
 }
 
-/* Responsive */
+/* ------------------------------------------------------------------ */
+/* Responsive                                                          */
+/* ------------------------------------------------------------------ */
 @media (max-width: 768px) {
-    .fim-filters {
-        flex-direction: column;
+    .fim-container {
+        padding: 12px;
     }
-    
-    .fim-filter-item {
-        max-width: 100%;
+
+    .fim-form-row {
+        flex-direction: column;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .fim-form-group {
+        padding: 0;
+        min-width: 100%;
+    }
+
+    .fim-card-header {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+    }
+
+    .fim-table {
+        font-size: 0.8125rem;
+    }
+
+    .fim-th,
+    .fim-table tbody td {
+        padding: 8px 10px;
+    }
+
+    .fim-input {
+        padding: 6px 8px;
+        font-size: 0.8125rem;
+    }
+
+    #fim-submit-button {
+        width: 100%;
     }
 }
