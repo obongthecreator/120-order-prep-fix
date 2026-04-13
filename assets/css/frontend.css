@@ -2,10 +2,8 @@
  * Frontend Styles for Fruit Inventory Manager
  * Brand colors: #FF0000 (red) and #FFFFFF (white)
  *
- * These CSS rules serve as the DEFINITIVE styling layer. Tailwind utility
- * classes in the templates are kept for convenience, but this stylesheet
- * guarantees the correct brand appearance even if the Tailwind CDN fails
- * to load or the tw- prefix is not recognized.
+ * Self-contained stylesheet — no external CDN or framework dependency.
+ * All classes are prefixed with 'fim-' to avoid WordPress theme conflicts.
  */
 
 /* ------------------------------------------------------------------ */
@@ -30,10 +28,10 @@
 }
 
 /* ------------------------------------------------------------------ */
-/* Spinner keyframes                                                   */
+/* Keyframes                                                           */
 /* ------------------------------------------------------------------ */
 @keyframes fim-spin {
-    0% { transform: rotate(0deg); }
+    0%   { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
 
@@ -48,28 +46,40 @@
 }
 
 /* ------------------------------------------------------------------ */
-/* Page container                                                      */
+/* Page container — FULL WIDTH                                         */
 /* ------------------------------------------------------------------ */
 .fim-container {
-    max-width: 900px;
+    width: 100%;
+    max-width: 100%;
     margin-left: auto;
     margin-right: auto;
-    padding: 20px;
+    padding: 24px;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    box-sizing: border-box;
+    color: var(--fim-gray-800);
+    line-height: 1.5;
+}
+
+.fim-container *,
+.fim-container *::before,
+.fim-container *::after {
     box-sizing: border-box;
 }
 
-/* Page header */
+/* ------------------------------------------------------------------ */
+/* Page header                                                         */
+/* ------------------------------------------------------------------ */
 .fim-page-header {
     text-align: center;
     margin-bottom: 32px;
 }
 
 .fim-page-header h2 {
-    font-size: 1.5rem;
-    font-weight: 600;
+    font-size: 1.75rem;
+    font-weight: 700;
     color: var(--fim-gray-800);
     margin: 0 0 8px 0;
+    line-height: 1.3;
 }
 
 .fim-page-header p {
@@ -79,7 +89,7 @@
 }
 
 /* ------------------------------------------------------------------ */
-/* Cards (sections with colored header)                                */
+/* Cards (white panel with red header)                                 */
 /* ------------------------------------------------------------------ */
 .fim-card {
     background: var(--fim-white);
@@ -87,26 +97,37 @@
     box-shadow: var(--fim-shadow-md);
     margin-bottom: 32px;
     overflow: hidden;
+    border: 1px solid var(--fim-gray-200);
 }
 
 .fim-card-header {
     background-color: var(--fim-brand);
     color: var(--fim-white);
-    padding: 14px 20px;
+    padding: 16px 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
 }
 
 .fim-card-header h3 {
     margin: 0;
     font-size: 1.125rem;
-    font-weight: 500;
+    font-weight: 600;
     color: var(--fim-white);
+    line-height: 1.4;
+}
+
+.fim-card-header-sub {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.75);
 }
 
 .fim-card-body {
-    padding: 20px;
+    padding: 24px;
 }
 
 /* ------------------------------------------------------------------ */
@@ -115,35 +136,36 @@
 .fim-form-row {
     display: flex;
     flex-wrap: wrap;
-    margin-left: -10px;
-    margin-right: -10px;
+    gap: 20px;
 }
 
 .fim-form-group {
     flex: 1 1 200px;
     min-width: 200px;
-    padding: 0 10px;
-    margin-bottom: 20px;
 }
 
 .fim-label {
     display: block;
-    margin-bottom: 8px;
-    font-weight: 500;
+    margin-bottom: 6px;
+    font-weight: 600;
     color: var(--fim-gray-800);
     font-size: 0.875rem;
 }
 
 .fim-form-control {
+    display: block;
     width: 100%;
-    padding: 10px 16px;
-    font-size: 1rem;
+    padding: 10px 14px;
+    font-size: 0.9375rem;
+    line-height: 1.5;
     border: 1px solid var(--fim-gray-300);
-    border-radius: 4px;
+    border-radius: 6px;
     background-color: var(--fim-white);
     color: var(--fim-gray-800);
     box-sizing: border-box;
     transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    -webkit-appearance: none;
+    appearance: none;
 }
 
 .fim-form-control:focus {
@@ -153,8 +175,9 @@
 }
 
 .fim-form-control[readonly] {
-    background-color: var(--fim-gray-50);
+    background-color: var(--fim-gray-100);
     opacity: 0.7;
+    cursor: not-allowed;
 }
 
 .fim-textarea {
@@ -162,22 +185,38 @@
     resize: vertical;
 }
 
+/* Filter actions row */
+.fim-filter-actions {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+    flex: 0 0 auto;
+    min-width: auto;
+}
+
 /* ------------------------------------------------------------------ */
 /* Buttons                                                             */
 /* ------------------------------------------------------------------ */
 .fim-btn {
     display: inline-block;
-    font-weight: 500;
+    font-weight: 600;
     text-align: center;
     vertical-align: middle;
-    border: 1px solid transparent;
-    padding: 12px 24px;
+    border: 2px solid transparent;
+    padding: 12px 28px;
     font-size: 1rem;
     line-height: 1.5;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
     text-decoration: none;
-    transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+    white-space: nowrap;
+    transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.fim-btn:active {
+    transform: scale(0.98);
 }
 
 .fim-btn-primary {
@@ -186,14 +225,16 @@
     color: var(--fim-white);
 }
 
-.fim-btn-primary:hover,
-.fim-btn-primary:focus {
+.fim-btn-primary:hover {
     background-color: var(--fim-brand-hover);
     border-color: var(--fim-brand-hover);
     color: var(--fim-white);
 }
 
 .fim-btn-primary:focus {
+    background-color: var(--fim-brand-hover);
+    border-color: var(--fim-brand-hover);
+    color: var(--fim-white);
     box-shadow: 0 0 0 3px var(--fim-brand-ring);
     outline: none;
 }
@@ -216,10 +257,16 @@
     outline: none;
 }
 
-/* Large submit button */
+/* Submit button wrapper */
+.fim-submit-wrap {
+    text-align: center;
+    margin-top: 8px;
+}
+
 #fim-submit-button {
     font-size: 1.125rem;
-    padding: 14px 28px;
+    padding: 16px 48px;
+    letter-spacing: 0.02em;
 }
 
 /* Button loading state */
@@ -245,48 +292,108 @@
 /* ------------------------------------------------------------------ */
 /* Table                                                               */
 /* ------------------------------------------------------------------ */
+.fim-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
 .fim-table {
     width: 100%;
     border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: auto;
+    /* Force visibility — override any inherited theme styles */
+    display: table !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.fim-table thead {
+    display: table-header-group !important;
+    visibility: visible !important;
+}
+
+.fim-table tbody {
+    display: table-row-group !important;
+    visibility: visible !important;
+}
+
+.fim-table tr {
+    display: table-row !important;
+    visibility: visible !important;
 }
 
 .fim-th {
-    padding: 12px 16px;
+    padding: 14px 16px;
     text-align: left;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--fim-white);
     background-color: var(--fim-brand);
     white-space: nowrap;
     border-bottom: 2px solid var(--fim-brand-hover);
-    font-size: 0.875rem;
-    letter-spacing: 0.02em;
+    font-size: 0.8125rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    /* Ensure visibility */
+    display: table-cell !important;
+    visibility: visible !important;
+    opacity: 1 !important;
 }
 
-.fim-table tbody td {
+.fim-td {
     padding: 12px 16px;
     border-bottom: 1px solid var(--fim-gray-200);
     vertical-align: middle;
+    font-size: 0.9375rem;
+    color: var(--fim-gray-800);
+    background-color: var(--fim-white);
+    display: table-cell !important;
+    visibility: visible !important;
+    opacity: 1 !important;
 }
 
-.fim-table tbody tr:last-child td {
+.fim-table tbody tr:last-child .fim-td {
     border-bottom: none;
 }
 
-.fim-product-row:hover {
+.fim-product-row:hover .fim-td {
     background-color: var(--fim-brand-light);
 }
 
-/* Table inputs */
+/* Loader container inside table */
+.fim-loader-container {
+    text-align: center;
+    padding: 40px 16px !important;
+}
+
+.fim-loader-text {
+    display: block;
+    margin-top: 10px;
+    font-size: 0.875rem;
+    color: var(--fim-gray-500);
+}
+
+/* ------------------------------------------------------------------ */
+/* Table inputs                                                        */
+/* ------------------------------------------------------------------ */
 .fim-input {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
     width: 100%;
+    min-width: 80px;
     padding: 8px 12px;
     font-size: 0.875rem;
+    line-height: 1.5;
     border: 1px solid var(--fim-gray-300);
     border-radius: 4px;
     background-color: var(--fim-white);
     color: var(--fim-gray-800);
     box-sizing: border-box;
     transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    -webkit-appearance: none;
+    appearance: none;
 }
 
 .fim-input:focus {
@@ -296,8 +403,9 @@
 }
 
 .fim-input[readonly] {
-    background-color: var(--fim-gray-50);
+    background-color: var(--fim-gray-100);
     cursor: not-allowed;
+    opacity: 0.7;
 }
 
 .fim-opening {
@@ -306,7 +414,7 @@
 }
 
 .fim-closing {
-    font-weight: 600;
+    font-weight: 700;
     color: var(--fim-brand);
 }
 
@@ -336,7 +444,7 @@
     display: flex;
     background-color: var(--fim-white);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    border-radius: 4px;
+    border-radius: 6px;
     margin-bottom: 10px;
     min-width: 300px;
     max-width: 400px;
@@ -362,12 +470,13 @@
 
 .fim-toast-title {
     font-weight: 600;
-    margin-bottom: 5px;
+    margin-bottom: 4px;
+    color: var(--fim-gray-800);
 }
 
 .fim-toast-message {
-    color: #666;
-    font-size: 14px;
+    color: var(--fim-gray-500);
+    font-size: 0.875rem;
 }
 
 .fim-toast-close {
@@ -377,6 +486,7 @@
     color: #999;
     padding: 10px 15px;
     cursor: pointer;
+    line-height: 1;
 }
 
 .fim-toast-close:hover {
@@ -410,28 +520,29 @@
     list-style: none;
     border-radius: 4px;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+    gap: 4px;
 }
 
 .fim-page-item {
-    margin: 0 2px;
+    margin: 0;
 }
 
 .fim-page-link {
-    position: relative;
     display: block;
-    padding: 8px 12px;
-    margin-left: -1px;
+    padding: 8px 14px;
     line-height: 1.25;
     color: var(--fim-brand);
     background-color: var(--fim-white);
-    border: 1px solid #dee2e6;
+    border: 1px solid var(--fim-gray-200);
+    border-radius: 4px;
     text-decoration: none;
-    transition: all 0.2s ease;
+    transition: all 0.15s ease;
+    font-size: 0.875rem;
 }
 
 .fim-page-link:hover {
-    z-index: 2;
     color: var(--fim-white);
     text-decoration: none;
     background-color: var(--fim-brand);
@@ -439,18 +550,18 @@
 }
 
 .fim-page-item.active .fim-page-link {
-    z-index: 1;
     color: var(--fim-white);
     background-color: var(--fim-brand);
     border-color: var(--fim-brand);
+    font-weight: 600;
 }
 
 .fim-page-item.disabled .fim-page-link {
-    color: #6c757d;
+    color: var(--fim-gray-500);
     pointer-events: none;
     cursor: auto;
-    background-color: var(--fim-white);
-    border-color: #dee2e6;
+    background-color: var(--fim-gray-50);
+    border-color: var(--fim-gray-200);
 }
 
 /* ------------------------------------------------------------------ */
@@ -458,10 +569,11 @@
 /* ------------------------------------------------------------------ */
 .fim-alert {
     position: relative;
-    padding: 12px 20px;
+    padding: 14px 20px;
     margin-bottom: 20px;
     border: 1px solid transparent;
-    border-radius: 4px;
+    border-radius: 6px;
+    font-size: 0.9375rem;
 }
 
 .fim-alert-success {
@@ -492,9 +604,9 @@
 /* Form feedback message                                               */
 /* ------------------------------------------------------------------ */
 .fim-form-message {
-    padding: 10px 15px;
-    margin: 15px 0;
-    border-radius: 4px;
+    padding: 12px 16px;
+    margin: 16px 0;
+    border-radius: 6px;
     font-weight: 500;
     text-align: center;
     display: none;
@@ -522,38 +634,88 @@
         padding: 12px;
     }
 
-    .fim-form-row {
-        flex-direction: column;
-        margin-left: 0;
-        margin-right: 0;
-    }
-
-    .fim-form-group {
-        padding: 0;
-        min-width: 100%;
+    .fim-page-header h2 {
+        font-size: 1.375rem;
     }
 
     .fim-card-header {
+        padding: 12px 16px;
         flex-direction: column;
-        gap: 8px;
         text-align: center;
+    }
+
+    .fim-card-body {
+        padding: 16px;
+    }
+
+    .fim-form-row {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .fim-form-group {
+        min-width: 100%;
+    }
+
+    .fim-filter-actions {
+        flex-direction: row;
+        width: 100%;
+    }
+
+    .fim-filter-actions .fim-btn {
+        flex: 1;
     }
 
     .fim-table {
         font-size: 0.8125rem;
     }
 
-    .fim-th,
-    .fim-table tbody td {
+    .fim-th {
+        padding: 10px 10px;
+        font-size: 0.75rem;
+    }
+
+    .fim-td {
         padding: 8px 10px;
     }
 
     .fim-input {
         padding: 6px 8px;
         font-size: 0.8125rem;
+        min-width: 60px;
     }
 
     #fim-submit-button {
         width: 100%;
+        padding: 14px 24px;
+    }
+
+    .fim-submit-wrap {
+        padding: 0 4px;
+    }
+}
+
+@media (max-width: 480px) {
+    .fim-container {
+        padding: 8px;
+    }
+
+    .fim-card-body {
+        padding: 12px;
+    }
+
+    .fim-th {
+        padding: 8px 6px;
+        font-size: 0.6875rem;
+    }
+
+    .fim-td {
+        padding: 6px;
+    }
+
+    .fim-input {
+        padding: 4px 6px;
+        font-size: 0.75rem;
+        min-width: 50px;
     }
 }

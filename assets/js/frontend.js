@@ -522,7 +522,7 @@
                         FIM.showToast('error', 'Error', response.data.message);
                         
                         // Clear table
-                        FIM.$recordsTableBody.html('<tr><td colspan="9" class="text-center">No records found</td></tr>');
+                        FIM.$recordsTableBody.html('<tr><td colspan="9" class="fim-td fim-loader-container">No records found</td></tr>');
                     }
                 },
                 error: function() {
@@ -530,7 +530,7 @@
                     FIM.showToast('error', 'Error', 'Failed to load records');
                     
                     // Clear table
-                    FIM.$recordsTableBody.html('<tr><td colspan="9" class="text-center">Error loading records</td></tr>');
+                    FIM.$recordsTableBody.html('<tr><td colspan="9" class="fim-td fim-loader-container">Error loading records</td></tr>');
                 }
             });
         },
@@ -543,23 +543,23 @@
             this.$recordsTableBody.empty();
             
             if (records.length === 0) {
-                this.$recordsTableBody.html('<tr><td colspan="9" class="text-center">No records found</td></tr>');
+                this.$recordsTableBody.html('<tr><td colspan="9" class="fim-td fim-loader-container">No records found</td></tr>');
                 return;
             }
             
             // Add records
             $.each(records, function(index, record) {
-                var $row = $('<tr class="hover:tw-bg-red-50 tw-border-b tw-border-gray-200"></tr>');
+                var $row = $('<tr class="fim-product-row"></tr>');
                 
-                $row.append('<td class="tw-py-3 tw-px-4">' + record.id + '</td>');
-                $row.append('<td class="tw-py-3 tw-px-4">' + record.product_name + '</td>');
-                $row.append('<td class="tw-py-3 tw-px-4">' + record.staff_name + '</td>');
-                $row.append('<td class="tw-py-3 tw-px-4">' + record.date + '</td>');
-                $row.append('<td class="tw-py-3 tw-px-4">' + record.opening + '</td>');
-                $row.append('<td class="tw-py-3 tw-px-4">' + record.total_added + '</td>');
-                $row.append('<td class="tw-py-3 tw-px-4">' + record.total_sold + '</td>');
-                $row.append('<td class="tw-py-3 tw-px-4">' + record.closing + '</td>');
-                $row.append('<td class="tw-py-3 tw-px-4">' + (record.remarks || '-') + '</td>');
+                $row.append('<td class="fim-td">' + record.id + '</td>');
+                $row.append('<td class="fim-td">' + record.product_name + '</td>');
+                $row.append('<td class="fim-td">' + record.staff_name + '</td>');
+                $row.append('<td class="fim-td">' + record.date + '</td>');
+                $row.append('<td class="fim-td">' + record.opening + '</td>');
+                $row.append('<td class="fim-td">' + record.total_added + '</td>');
+                $row.append('<td class="fim-td">' + record.total_sold + '</td>');
+                $row.append('<td class="fim-td">' + record.closing + '</td>');
+                $row.append('<td class="fim-td">' + (record.remarks || '-') + '</td>');
                 
                 FIM.$recordsTableBody.append($row);
             });

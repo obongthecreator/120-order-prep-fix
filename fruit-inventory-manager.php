@@ -91,37 +91,31 @@ class Fruit_Inventory_Manager {
     }
     
     /**
- * Enqueue frontend assets
- */
-public function enqueue_frontend_assets() {
-    // Tailwind CSS CDN — config MUST load before the CDN script so the prefix
-    // is known when Tailwind initializes and preflight is properly disabled.
-    // Brand color #FF0000 is registered as a custom color so tw-bg-brand / tw-text-brand work.
-    wp_enqueue_script('fim-tailwind-cdn', 'https://cdn.tailwindcss.com', array(), null, false);
-    wp_add_inline_script('fim-tailwind-cdn', "tailwind.config = { prefix: 'tw-', corePlugins: { preflight: false }, theme: { extend: { colors: { brand: '#FF0000' } } } };", 'before');
-    
-    // Styles
-    wp_enqueue_style('fim-frontend-css', FIM_PLUGIN_URL . 'assets/css/frontend.css', array(), FIM_PLUGIN_VERSION);
-    
-    // Scripts
-    wp_enqueue_script('fim-frontend-js', FIM_PLUGIN_URL . 'assets/js/frontend.js', array('jquery'), FIM_PLUGIN_VERSION, true);
-    
-    // Localize script
-    $params = array(
-        'ajax_url' => admin_url('admin-ajax.php'),
-        'nonce' => wp_create_nonce('fim-nonce'),
-        'main_color' => FIM_MAIN_COLOR,
-        'current_user' => wp_get_current_user()->display_name,
-        'current_date' => current_time('Y-m-d'),
-        'current_time' => current_time('H:i:s'),
-        'is_admin' => current_user_can('manage_options') ? '1' : '0',
-    );
-    
-    // Allow filtering of localized script params
-    $params = apply_filters('fim_frontend_localize_script', $params);
-    
-    wp_localize_script('fim-frontend-js', 'fim_params', $params);
-}
+     * Enqueue frontend assets
+     */
+    public function enqueue_frontend_assets() {
+        // Styles — self-contained CSS, no external CDN dependency
+        wp_enqueue_style('fim-frontend-css', FIM_PLUGIN_URL . 'assets/css/frontend.css', array(), FIM_PLUGIN_VERSION);
+        
+        // Scripts
+        wp_enqueue_script('fim-frontend-js', FIM_PLUGIN_URL . 'assets/js/frontend.js', array('jquery'), FIM_PLUGIN_VERSION, true);
+        
+        // Localize script
+        $params = array(
+            'ajax_url' => admin_url('admin-ajax.php'),
+            'nonce' => wp_create_nonce('fim-nonce'),
+            'main_color' => FIM_MAIN_COLOR,
+            'current_user' => wp_get_current_user()->display_name,
+            'current_date' => current_time('Y-m-d'),
+            'current_time' => current_time('H:i:s'),
+            'is_admin' => current_user_can('manage_options') ? '1' : '0',
+        );
+        
+        // Allow filtering of localized script params
+        $params = apply_filters('fim_frontend_localize_script', $params);
+        
+        wp_localize_script('fim-frontend-js', 'fim_params', $params);
+    }
     
     /**
      * Enqueue admin assets
