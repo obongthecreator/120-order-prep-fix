@@ -65,6 +65,15 @@
             this.$filterForm.on('submit', this.handleFilterSubmit.bind(this));
             this.$resetFilterButton.on('click', this.resetFilters.bind(this));
             this.$pagination.on('click', '.fim-page-link', this.handlePaginationClick.bind(this));
+            
+            // Smart input fields: select all on focus so users don't have to delete 0s
+            this.$productsTable.on('focus', 'input[type="number"]', function() {
+                var $this = $(this);
+                // If field has a value, select it all so typing replaces it
+                if ($this.val() !== '') {
+                    this.select();
+                }
+            });
         },
         
         initializeDatepicker: function() {
@@ -134,7 +143,9 @@
                     },
                     success: function(response) {
                         if (response.success) {
-                            $openingField.val(parseFloat(response.data.opening_value).toFixed(2));
+                            var openingVal = parseFloat(response.data.opening_value);
+                            // Only set value if non-zero, otherwise leave empty for placeholder
+                            $openingField.val(openingVal > 0 ? openingVal.toFixed(2) : '');
                             
                             $.ajax({
                                 url: fim_params.ajax_url,
@@ -148,19 +159,23 @@
                                 success: function(recordResponse) {
                                     if (recordResponse.success && recordResponse.data.record) {
                                         var record = recordResponse.data.record;
-                                        $openingField.val(parseFloat(record.opening).toFixed(2));
-                                        $row.find('.fim-total-added').val(parseFloat(record.total_added).toFixed(2));
-                                        $row.find('.fim-total-sold').val(parseFloat(record.total_sold).toFixed(2));
-                                        $closingField.val(parseFloat(record.closing).toFixed(2));
+                                        var recOpening = parseFloat(record.opening);
+                                        var recAdded = parseFloat(record.total_added);
+                                        var recSold = parseFloat(record.total_sold);
+                                        var recClosing = parseFloat(record.closing);
+                                        $openingField.val(recOpening > 0 ? recOpening.toFixed(2) : '');
+                                        $row.find('.fim-total-added').val(recAdded > 0 ? recAdded.toFixed(2) : '');
+                                        $row.find('.fim-total-sold').val(recSold > 0 ? recSold.toFixed(2) : '');
+                                        $closingField.val(recClosing > 0 ? recClosing.toFixed(2) : '');
                                     } else {
-                                        if (isAdmin && ($closingField.val() == "0.00" || $closingField.val() == "0")) {
+                                        if (isAdmin && ($closingField.val() === '' || $closingField.val() === '0' || $closingField.val() === '0.00')) {
                                             $closingField.val($openingField.val());
                                         }
                                         FIM.calculateClosingForRow($row);
                                     }
                                 },
                                 error: function() {
-                                    if (isAdmin && ($closingField.val() == "0.00" || $closingField.val() == "0")) {
+                                    if (isAdmin && ($closingField.val() === '' || $closingField.val() === '0' || $closingField.val() === '0.00')) {
                                         $closingField.val($openingField.val());
                                     }
                                     FIM.calculateClosingForRow($row);
@@ -189,7 +204,12 @@
             var totalSold = parseFloat($row.find('.fim-total-sold').val()) || 0;
             
             var closing = opening + totalAdded - totalSold;
-            $row.find('.fim-closing').val(closing.toFixed(2));
+            // Only show closing value if there's actual data, otherwise leave empty for placeholder
+            if (opening > 0 || totalAdded > 0 || totalSold > 0) {
+                $row.find('.fim-closing').val(closing.toFixed(2));
+            } else {
+                $row.find('.fim-closing').val('');
+            }
         },
         
         calculateClosing: function(e) {

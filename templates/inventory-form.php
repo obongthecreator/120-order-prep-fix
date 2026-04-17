@@ -74,16 +74,16 @@ $is_admin = current_user_can('manage_options');
                                 <tr data-product-id="<?php echo esc_attr($product['id']); ?>">
                                     <td><?php echo esc_html($product['product_name']); ?></td>
                                     <td>
-                                        <input type="number" step="0.01" min="0" class="fim-opening" value="0" <?php echo $is_admin ? '' : 'readonly'; ?>>
+                                        <input type="number" step="0.01" min="0" class="fim-opening" value="" placeholder="0" <?php echo $is_admin ? '' : 'readonly'; ?>>
                                     </td>
                                     <td>
-                                        <input type="number" step="0.01" min="0" class="fim-total-added" value="0">
+                                        <input type="number" step="0.01" min="0" class="fim-total-added" value="" placeholder="0">
                                     </td>
                                     <td>
-                                        <input type="number" step="0.01" min="0" class="fim-total-sold" value="0">
+                                        <input type="number" step="0.01" min="0" class="fim-total-sold" value="" placeholder="0">
                                     </td>
                                     <td>
-                                        <input type="number" step="0.01" min="0" class="fim-closing" value="0" <?php echo $is_admin ? '' : 'readonly'; ?>>
+                                        <input type="number" step="0.01" min="0" class="fim-closing" value="" placeholder="0" <?php echo $is_admin ? '' : 'readonly'; ?>>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

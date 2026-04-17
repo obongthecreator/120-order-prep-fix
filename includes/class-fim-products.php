@@ -105,7 +105,7 @@ class FIM_Products {
     
     /**
      * Get all products
-     * Modified to return only unique products by name
+     * Modified to return only unique products by name, sorted alphabetically
      */
     public function get_products($args = array()) {
         $products = $this->db->get_products($args);
@@ -120,6 +120,11 @@ class FIM_Products {
                 $unique_products[] = $product;
             }
         }
+        
+        // Sort alphabetically by product name
+        usort($unique_products, function($a, $b) {
+            return strcasecmp($a['product_name'], $b['product_name']);
+        });
         
         return $unique_products;
     }

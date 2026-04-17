@@ -107,7 +107,6 @@
 
 .fim-form-control:focus {
     border-color: var(--fim-primary-color);
-    box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.25);
     outline: none;
 }
 
@@ -172,7 +171,6 @@
 
 .fim-table input:focus {
     border-color: var(--fim-primary-color);
-    box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.25);
     outline: none;
 }
 
@@ -192,7 +190,6 @@
 .admin-editable:focus {
     background-color: #fff8e1 !important;
     border-color: #ffb300 !important;
-    box-shadow: 0 0 0 2px rgba(255, 179, 0, 0.25) !important;
 }
 
 /* Admin notice styles */
@@ -238,7 +235,6 @@
 
 .fim-btn:focus {
     outline: 0;
-    box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.25);
 }
 
 .fim-btn-primary {
@@ -437,7 +433,6 @@
 
 .fim-filter-control:focus {
     border-color: var(--fim-primary-color);
-    box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.25);
     outline: none;
 }
 
